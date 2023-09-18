@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #414142;
+    font: 12pt "Montserrat", sans-serif;
+    -webkit-print-color-adjust: exact !important;
+  }
+  * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+
+  .page-container {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 0mm;
+    margin: 10mm auto;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  .page-inner {
+    padding: 0;
+    height: 297mm;
+    padding: 10mm;
+  }
+
+  .page-inner table,
+  .page-inner td,
+  .page-inner th {
+    padding: 2mm;
+    border-collapse: collapse;
+    border: 1px solid #414142;
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    html,
+    body {
+      width: 210mm;
+      height: 297mm;
+    }
+    .page-container {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+    }
+  }
+
+  .logo-container {
+     margin: 5mm 8mm 1mm 4mm;
+  }
+
+  .project-logo {
+    width: 50mm;
+    height: 20mm;
+    display: inline-block;
+  }
+
+  .report-freq {
+    text-decoration: underline;
+    display: inline-block;
+    position: relative;
+    top: 2mm;
+    left: 75mm;
+  }
+
+  .report-Type {
+    margin-top : 5mm;
+    text-align: center;
+  }
+
+  table, tr, th, td {
+    border: 0.2px solid;
+    padding: 1mm;
+  }
+
+  .metadata-block {
+    margin-top: 5mm;
+    padding: 5mm 10mm;
+    align-items: center;
+  }
+
+  .data-block {
+     padding: 2mm;
+  }
+
+
+  @media print {
+    .controls-container {
+      display: none !important;
+    }
+  }
+
+  .wrap {
+  word-wrap: break-word;
+  }
+
+  .footer{
+    margin-top: 5mm;
+    text-align: center;
+  }
+
+  .footerSpan {
+    margin: 0mm 40mm;
+  }
+
+  table th, td {
+    font-size: 60%;
+    column-width: auto;
+    row-width: auto;
+  }
+
+    </style>
+
+</head>
+<body>
+
+<div class="main-container">
+    <div class="page-container">
+
+        <div class="logo-container">
+            <img class="project-logo" th:src="${embeddedImage}" alt="project-logo"/>
+            <p class="report-freq">Monthly Summary Report</p>
+        </div>
+
+        <div class="report-Type">
+            <h3 th:text="${reportName}"></h3>
+        </div>
+
+        <div class="metadata-block">
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th scope="row"> Merchant Name</th>
+                    <td th:text="${merchantName}"></td>
+                </tr>
+
+                <tr>
+                    <th scope="row"> Processing Date</th>
+                    <td th:text="${startDate}+' to '+${endDate}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="data-block">
+            <table class="table table-bordered">
+                <thead>
+                <tr class="wrap">
+                    <span th:each="header : ${csvDataHeaders}">
+                        <th class="wrap" th:text="${header}">  </th>
+                    </span>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="wrap" th:each="row : ${csvDataRows}">
+                       <span th:each="col : ${row}">
+                           <td class="wrap" th:text="${col}"></td>
+                       </span>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <span th:text="${createdDate}"></span>
+            <span class="footerSpan" th:text="${pageNumber}"></span>
+            <span th:text="${createdTime}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

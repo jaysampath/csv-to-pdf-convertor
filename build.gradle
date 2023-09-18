@@ -1,0 +1,43 @@
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+}
+
+
+dependencies {
+
+	compile "org.projectlombok:lombok:1.18.16"
+	annotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+
+	implementation 'javax.interceptor:javax.interceptor-api:1.2.2'
+
+	// https://mvnrepository.com/artifact/com.opencsv/opencsv
+	implementation 'com.opencsv:opencsv:5.7.1'
+
+	// https://mvnrepository.com/artifact/com.itextpdf/itextpdf
+	implementation 'com.itextpdf:itextpdf:5.5.13.3'
+
+	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+	implementation 'org.thymeleaf:thymeleaf:3.1.1.RELEASE'
+
+	// https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf
+	implementation 'org.xhtmlrenderer:flying-saucer-pdf:9.1.22'
+
+	implementation 'org.slf4j:slf4j-api:1.7.30'
+	implementation 'org.slf4j:slf4j-simple:1.7.30'
+
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	implementation 'commons-io:commons-io:2.11.0'
+
+	testCompile "org.powermock:powermock-api-mockito2:2.0.2"
+	testCompile "org.powermock:powermock-module-junit4:2.0.2"
+	testCompile "org.mockito:mockito-core:3.8.0"
+	testCompile "org.mockito:mockito-inline:3.8.0"
+	apiTestAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
+
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+
+}
+
